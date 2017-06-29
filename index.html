@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset = "utf-8"/>
+  <title></title>
+  <style>
+  	*{
+  		margin:0;
+  		padding:0;
+  	}
+  	img{
+  		width:100%;
+  		height:100%;
+  		overflow: hidden;
+  	}
+  	#btn{
+  		width:100px;
+  		height:100px;
+  		position:fixed;
+  		left:46%;
+  		top:45%;
+  		cursor: pointer;
+  	}
+  	#btn .images{
+  		width:100px;
+  		height:100px;
+  	}
+  </style>
+ </head>
+  <body>
+    <div id="btn">
+    	<img class="images" src="img/u=3609602874,4008052602&fm=23&gp=0.jpg" />
+    </div>
+    <img src="img/88j58PIC29G_1024.jpg" />
+    <script>
+	  window.onload = function(){
+	    var btn = document.getElementById("btn");
+		  function login(width,height,smallwidth,smallheight,title){
+		      this.width = width;
+			  this.height = height;
+			  this.smallwidth = smallwidth;
+			  this.smallheight = smallheight;
+			  this.title = title;
+		  }
+		  var t1 = new login(300,200,500,200,'hello sister!');
+		  var divobj = document.createElement("div");
+		     divobj.style.cssText = "position: absolute;display: none;left: 0px;top: 0px;opacity: 0.5;z-index:10;width: 100%;height: 800.97px;background:#000;";
+		     document.body.appendChild(divobj);
+          var divobj1 = document.createElement("div");
+		      divobj1.setAttribute('class','boxs');
+             divobj1.style.cssText = "position: fixed;display:none;left:"+t1.smallwidth+"px;top:"+t1.smallheight+"px;text-align:center;line-height:200px;background:#c33;z-index:20;width:"+t1.width+"px;height:"+t1.height+"px;";
+		  var contont = document.createTextNode(t1.title);
+		     divobj1.appendChild(contont);
+             document.body.appendChild(divobj1);
+		  var btns = document.createElement("input");
+		     btns.setAttribute('class','bount');
+		     btns.type = "button";
+		     btns.value = "确定";
+		     btns.style.cssText = "position:absolute;left:120px;top:140px;width:60px;height:25px;outline: 0;";
+		     divobj1.appendChild(btns);
+          var divobj2 = document.createElement("div");
+		     divobj2.setAttribute('class','title');
+             divobj2.style.cssText = "width:95%;padding-left:15px;text-align:left;cursor:pointer;height:30px;background:green;position:absolute;left:0;top:0;line-height:30px;color:#000;";
+             divobj1.appendChild(divobj2);	
+          var textcont = document.createTextNode("提示信息");
+             divobj2.appendChild(textcont);
+          var bont = document.getElementById("bont");
+		  btn.onclick = function(){
+		     divobj.style.display = "block";
+             divobj1.style.display = "block";			 
+		  };
+		    var bount = document.getElementsByClassName("bount")[0];
+		    console.log(bount);
+		  bount.onclick = function(){
+		    divobj.style.display = "none";
+			divobj1.style.display = "none";
+		  };
+		  var boxs = document.getElementsByClassName("boxs")[0];
+		  var title = boxs.getElementsByClassName("title")[0];
+		  title.onmousedown = function(e){
+		      e = e || window.event;
+			  var x = e.offsetX;
+			  var y = e.offsetY;
+			  console.log(x,y);
+			document.onmousemove = function(e){
+			   e = e || window.event;
+			   var setX = e.clientX - x;
+			   var setY = e.clientY - y;
+			   console.log(setX,setY);
+			   if(setX <= 0){
+			      return;
+			   };
+			   if(setY <= 0){
+			     return;
+			   };
+			   if(setX >= document.documentElement.clientWidth - 300){
+			     return;
+			   };
+			   console.log(document.documentElement.clientWidth);
+			   if(setY >= document.documentElement.clientHeight - 200){
+			     return;
+			   };
+			   boxs.style.left = setX + "px";
+			   boxs.style.top = setY + "px";
+			};
+		  };
+		  title.onmouseup = function(){
+		    document.onmousemove = null;
+		  }
+	  }
+	</script>
+  </body>
+</html>
